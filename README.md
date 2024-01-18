@@ -58,8 +58,23 @@ if (index >= 0 && index < numbers.length) {
 This checks if the index is withing the valid range first before trying to access it, therefore effectively solving this issue.
 
 ## Third Challenge
-### Modyfing Arrays within a loop
+### Modifying Arrays within a loop
 
+Modifying the array while iterating over it using a for each loop can lead to unexpected problems. This is because foreach loops use an iterator internally, and modifying the array during iteration can cause issues. For example: 
+```java
+int[] numbers = {1, 2, 3, 4, 5};
+// Trying to modify the array within a foreach loop
+for (int num : numbers) {
+    numbers[num - 1] = num * 2; // This will lead to unexpected behavior
+}
+```
+This happened to me within coding activities and it took me changing the type of loop for the errors to go away. It looked something like this:
+
+```java
+for (int i = 0; i < numbers.length; i++) {
+    numbers[i] = numbers[i] * 2; // Safely modify the array
+}
+```
 
 
 
@@ -69,4 +84,4 @@ This checks if the index is withing the valid range first before trying to acces
 * Always make sure you are trying to access an element within a valid range so you don't run into an errorw
 * Be careful when using a for each loop because modifying the array can lead to problems due to the iterator running internally.
 * Put more time towards questions that require more reading of code so you are less likely to skim over important code.
-* 
+* Mess around with newly introduced ideas and code so you can understand what it can and cant do, as well as learning when to use it or use something else.
