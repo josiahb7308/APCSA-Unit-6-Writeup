@@ -28,70 +28,45 @@ public static int mystery(double[] a,double x)
 }
 
 ```
-The question is simply asking what does this code do and my answer to that was "Returns the sum of the values in the array". What I messed up on and what eventually cost me the question was the fact that it does ask for a sum but only if none of the values in the array are equal to X. The code `if(a[i] != x)` assures that it wont ask for a sum if x is equal to a value in the array and I missed this very important piece of code.
+ 
+The question is simply asking what does this code do and my answer to that was "Returns the sum of the values in the array". What I messed up on and what eventually cost me the question was the fact that it does ask for a sum but only if none of the values in the array are equal to X. The code `if(a[i] != x)` assures that it wont ask for a sum if x is equal to a value in the array and I missed this very important piece of code. This type of mistake makes up a sizeable percentage of my questions on this test so this will represent those. 
 
 
 ## Second Challenge
-### Overthinking Obstacle
+### IndexOutofBounds error
 
-On question 15 I overthought this question so much that I changed the right answer I already selected into the wrong one. The answer I picked last which was wrong is the choice that says the procedure will work fine and nothing will be wrong, I was double checking my answers and I felt as if I picked the wrong answer even though I picked the right one so I changed it. The code in question is 
+I ended up getting this error on a lot of the coding activities due to me writing code that would have the index be negative or have the index exceed the array length. For example:
+
 ```java
-/**
- * @param score - the student’s test score
- * @return the student’s letter grade
- */
-public String closeEnough(int score)
-  if (score >= 60) 
-  {
-    return “D”;
-  } 
-  else if (score >= 70) 
-  {
-    return “C”;
-  } 
-  else if (score >= 80) 
-  {
-    return “B”;
-  } 
-  else if (score >= 90) 
-  {
-    return “A”;
-  } 
-  else 
-  {
-    return “F”;
-  }
+int[] numbers = {1, 2, 3, 4, 5};
+// Accessing an element outside the array bounds
+int value = numbers[5]; // This will result in an ArrayIndexOutOfBoundsException
 ```
-The correct answer that I originally picked was that a score of 70 would cause the procedure to not work as expected because it would return a D instead of the C that it should actually return. 
 
+This error occurs when trying to access an array element outside of the valid range. This can happen a lot when you miscount your elements in the array forgetting that the first element is always counted as the index of 0. A simple solution to this would be the following:
 
-## Third Challenge
-### Compile-time 
-
-For this challenge I got one of the two choices correct but I was stuck for the other part of the answer so I ended with the wrong answer. The code being looked at is the following:
 ```java
-public class MyClass 
-{
-   public MyClass()
-   {
-     /* Implementation not shown */
-   }
-   public MyClass(int arg1) 
-   {
-     /* implementation not shown */
-   }
-   public MyClass(String arg1, int arg2) 
-   {
-     /* implementation not shown */
-   }
+int index = 2;
+if (index >= 0 && index < numbers.length) {
+    int value = numbers[index];
+    System.out.println("Value at index " + index + ": " + value);
+} else {
+    System.out.println("Index out of bounds");
 }
 ```
-I chose answer 3 which is correct and answer 2 which is wrong, here is why answer 2 is wrong. The constructor in 2 has a parameter which is of a String type, followed by a parameter which is an int. This is the same as a public constructor that is already included so this constructor cant be added to the class. 
+
+This checks if the index is withing the valid range first before trying to access it, therefore effectively solving this issue.
+
+## Third Challenge
+### Modyfing Arrays within a loop
+
+
 
 
 
 ### Takeaways
 
-* When dealing with constructors pay close attention to the type of parameters they require and if there are any other constructors taking in the same parameters. This stems from my first challenge where I answered a question wrong because I didnt do this well.
-* Look at what elements are public so you can adjust your parameters to not conflict with an already created constructor.
-* I also had a mistake here that was made because of me overthinking my previous answer so I need to be more confident in my answers.
+* Always make sure you are trying to access an element within a valid range so you don't run into an errorw
+* Be careful when using a for each loop because modifying the array can lead to problems due to the iterator running internally.
+* Put more time towards questions that require more reading of code so you are less likely to skim over important code.
+* 
